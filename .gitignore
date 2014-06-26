@@ -1,0 +1,11 @@
+*.pyc
+*.coverage
+*.log
+*~
+*.sqlite
+.project
+.pydevproject
+.settings
+.env
+venv/
+.idea/
