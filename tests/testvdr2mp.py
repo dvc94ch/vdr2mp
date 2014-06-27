@@ -2,7 +2,8 @@ from datetime import datetime
 from os.path import dirname, realpath, join
 from unittest import TestCase
 
-from main.vdr2mp import stringify, start_time, end_time, get_info_and_ts_files, parse_info_file
+from main.vdr2mp import (stringify, start_time, end_time, get_info_and_ts_files, parse_info_file, mp_simple_tag,
+                         generate_mp_file, output_file_name, output_dir_name)
 
 
 class InfoFileParsingTestCase(TestCase):
@@ -53,3 +54,38 @@ class InputdirParsingTestCase(TestCase):
     def test_get_info_and_ts_files(self):
         self.assertEquals(
             get_info_and_ts_files(self.folderdir_path), (self.infofile_path, [self.tsfile1_path, self.tsfile2_path]))
+
+
+class MediaPortalFileGenerationTestCase(TestCase):
+
+    values = {
+        'title': 'TITLE',
+        'genre': 'GENRE',
+        'comment': 'COMMENT',
+        'channelname': 'CHANNEL_NAME',
+        'starttime': 'STARTTIME',
+        'endtime': 'ENDTIME'
+    }
+
+    def test_mp_simple_tag(self):
+        self.assertEquals(mp_simple_tag('TITLE', 'The Dark Knight'),
+                          "<SimpleTag><name>TITLE</name><value>The Dark Knight</value></SimpleTag>\n")
+
+    def test_generate_mp_file(self):
+        self.assertEquals(
+            generate_mp_file(self.values),
+            '<? xml ersion="1.0" encoding="UTF-8" ?>\n<tags>\n<tag>\n' +
+            '<SimpleTag><name>TITLE</name><value>TITLE</value></SimpleTag>\n' +
+            '<SimpleTag><name>GENRE</name><value>GENRE</value></SimpleTag>\n' +
+            '<SimpleTag><name>COMMENT</name><value>COMMENT</value></SimpleTag>\n' +
+            '<SimpleTag><name>CHANNEL_NAME</name><value>CHANNEL_NAME</value></SimpleTag>\n' +
+            '<SimpleTag><name>STARTTIME</name><value>STARTTIME</value></SimpleTag>\n' +
+            '<SimpleTag><name>ENDTIME</name><value>ENDTIME</value></SimpleTag>\n' +
+            '</tag>\n</tags>')
+
+    def test_output_file_name(self):
+        self.assertEquals(output_file_name(self.values, 'xml'), 'TITLE - CHANNEL_NAME - STARTTIME.xml')
+        self.assertEquals(output_file_name(self.values, 'ts'), 'TITLE - CHANNEL_NAME - STARTTIME.ts')
+
+    def test_output_dir_name(self):
+        self.assertEquals(output_dir_name(self.values), 'TITLE')

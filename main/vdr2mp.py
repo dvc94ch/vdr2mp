@@ -58,6 +58,29 @@ def get_info_and_ts_files(wdir):
     return infofile, tsfiles
 
 
+def mp_simple_tag(name, value):
+    return '<SimpleTag><name>%s</name><value>%s</value></SimpleTag>\n' % (name, value)
+
+
+def generate_mp_file(values):
+    return """<? xml ersion="1.0" encoding="UTF-8" ?>\n<tags>\n<tag>\n%s</tag>\n</tags>""" % (
+        mp_simple_tag('TITLE', values['title']) +
+        mp_simple_tag('GENRE', values['genre']) +
+        mp_simple_tag('COMMENT', values['comment']) +
+        mp_simple_tag('CHANNEL_NAME', values['channelname']) +
+        mp_simple_tag('STARTTIME', values['starttime']) +
+        mp_simple_tag('ENDTIME', values['endtime'])
+    )
+
+
+def output_file_name(values, format):
+    return '%s - %s - %s.%s' % (values['title'], values['channelname'], values['starttime'], format)
+
+
+def output_dir_name(values):
+    return values['title']
+
+
 if __name__ == '__main__':
     INPUTDIR = argv[1]
     OUTPUTDIR = argv[2]
