@@ -1,0 +1,5 @@
+C Quelle-NID-TID-SID CHANNEL_NAME
+E EventId Starttime Duration TableId1 TableId2
+T TITLE
+S GENRE
+D COMMENT
