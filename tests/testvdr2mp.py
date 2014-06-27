@@ -2,7 +2,7 @@ from datetime import datetime
 from os.path import dirname, realpath, join
 from unittest import TestCase
 
-from main.vdr2mp import stringify, start_time, end_time, get_info_and_ts_files
+from main.vdr2mp import stringify, start_time, end_time, get_info_and_ts_files, parse_info_file
 
 
 class InfoFileParsingTestCase(TestCase):
@@ -23,6 +23,22 @@ class InfoFileParsingTestCase(TestCase):
 
     def test_end_time(self):
         self.assertEquals(end_time(self.start_time, self.duration), self.end_time)
+
+    def test_parse_info_file(self):
+        self.assertEquals(parse_info_file("""
+            C S19.2E-1-1011-11100 Das Erste HD
+            E 40747 1303617600 4500 4E 1C
+            T TITLE
+            S GENRE
+            D COMMENT
+        """), {
+            'title': 'TITLE',
+            'genre': 'GENRE',
+            'comment': 'COMMENT',
+            'channelname': 'Das Erste HD',
+            'starttime': '1303617600',
+            'duration': '4500'
+        })
 
 
 class InputdirParsingTestCase(TestCase):

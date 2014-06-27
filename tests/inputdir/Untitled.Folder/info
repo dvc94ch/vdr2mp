@@ -1,5 +1,14 @@
-C Quelle-NID-TID-SID CHANNEL_NAME
-E EventId Starttime Duration TableId1 TableId2
-T TITLE
-S GENRE
-D COMMENT
+C S19.2E-1-1011-11100 Das Erste HD
+E 40747 1303617600 4500 4E 1C
+T Flutsch und weg
+S Spielfilm Großbritannien / USA 2006 (Flushed Away) - Kinderprogramm
+D Die Ratte Roddy lebt als verwöhntes Haustier bei einer wohlhabenden Londoner Familie. Als er in die Kanalisation gespült wird, kommt er einem Komplott des fiesen Kröterichs Toad auf die Spur und muss sich als Held und Lebensretter beweisen.
+X 5 0B deu HD-Video
+X 2 03 deu stereo
+X 4 44 deu Dolby Digital 5.1
+X 2 03 deu ohne Audiodeskription
+V 1303617600
+F 50
+P 50
+L 99
+@ <epgsearch><channel>1 - Das Erste HD</channel><update>0</update><eventid>40747</eventid><bstart>600</bstart><bstop>900</bstop></epgsearch>
