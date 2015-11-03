@@ -1,0 +1,14 @@
+C C-1-85-9030 TNT Film HD
+E 32778 1379888100 9000 4E 10
+T Inglorious Basterds
+D Kriegsfilm über eine alliierte Spezialeinheit, die Nazis hinter feindlichen Linien tötet. Bei einer Kinopremiere will die Truppe die Führungsebene des Dritten Reichs auslöschen.
+G 19
+R 16
+X 5 0B eng
+X 5 0B eng .
+X 2 03 deu
+X 2 03 eng
+X 2 05 deu
+F 25
+P 50
+L 99

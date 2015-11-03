@@ -37,8 +37,8 @@ class InfoFileParsingTestCase(TestCase):
             'genre': 'GENRE',
             'comment': 'COMMENT',
             'channelname': 'Das Erste HD',
-            'starttime': '1303617600',
-            'duration': '4500'
+            'starttime': '2011-04-24 06:00',
+            'endtime': '2011-04-24 07:15'
         })
 
 
@@ -48,8 +48,8 @@ class InputdirParsingTestCase(TestCase):
     inputdir_path = join(tests_path, 'inputdir')
     folderdir_path = join(inputdir_path, 'Untitled.Folder')
     infofile_path = join(folderdir_path, 'info')
-    tsfile1_path = join(folderdir_path, '00001.ts')
-    tsfile2_path = join(folderdir_path, '00002.ts')
+    tsfile1_path = join(folderdir_path, '00001.ts').replace(' ', '\ ')
+    tsfile2_path = join(folderdir_path, '00002.ts').replace(' ', '\ ')
 
     def test_get_info_and_ts_files(self):
         self.assertEquals(
@@ -74,7 +74,7 @@ class MediaPortalFileGenerationTestCase(TestCase):
     def test_generate_mp_file(self):
         self.assertEquals(
             generate_mp_file(self.values),
-            '<? xml ersion="1.0" encoding="UTF-8" ?>\n<tags>\n<tag>\n' +
+            '<? xml version="1.0" encoding="UTF-8" ?>\n<tags>\n<tag>\n' +
             '<SimpleTag><name>TITLE</name><value>TITLE</value></SimpleTag>\n' +
             '<SimpleTag><name>GENRE</name><value>GENRE</value></SimpleTag>\n' +
             '<SimpleTag><name>COMMENT</name><value>COMMENT</value></SimpleTag>\n' +
